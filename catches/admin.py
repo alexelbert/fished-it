@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Catches, Comment
+from .models import Catch, Comment
 
 
-admin.site.register(Catches)
+admin.site.register(Catch)
 admin.site.register(Comment)

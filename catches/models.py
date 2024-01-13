@@ -7,7 +7,7 @@ STATUS = ((0, "Private"), (1, "Public"))
 # Create your models here.
 
 
-class Catches(models.Model):
+class Catch(models.Model):
     """
     Stores a single blog catch entry related to :model:`auth.User`.
     """
@@ -32,9 +32,9 @@ class Catches(models.Model):
 class Comment(models.Model):
     """
     Stores a single comment entry related to :model:`auth.User`
-    and :model:`catches.Catches`.
+    and :model:`catches.Catch`.
     """
-    post = models.ForeignKey(Catches, on_delete=models.CASCADE,
+    post = models.ForeignKey(Catch, on_delete=models.CASCADE,
                              related_name="comments")
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="commenter")
