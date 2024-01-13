@@ -14,7 +14,6 @@ class Catches(models.Model):
     fish_species = models.CharField(max_length=200)
     fish_length = models.FloatField()
     fish_weight = models.FloatField()
-    slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="catch_posts"
     )
