@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 LOCAL_IP = os.environ.get("LOCAL_IP")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     LOCAL_IP,
@@ -93,6 +93,9 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.herokuapp.com"
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
