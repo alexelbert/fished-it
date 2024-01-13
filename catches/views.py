@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Catch
 
-# Create your views here.
-def my_catches(request):
-    return HttpResponse("Hello, Catches!")
+def catch_list(request):
+    # Retrieve all public catches
+    catches = Catch.objects.filter(public=1)
+
+    # Pass the catches to the template for rendering
+    return render(request, 'catches/catches_list.html', {'object_list': catches})
