@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from catches.views import my_catches
+from catches.views import catch_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('catches/', my_catches, name='catches'),
+    path('', catch_list, name='catch-list'),
 ]
