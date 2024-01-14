@@ -23,14 +23,6 @@
 
                             <p class="card-text">Length: {{ catch.fish_length }} | Weight: {{ catch.fish_weight }}</p>
                             <p class="card-text text-muted h6">Created on: {{ catch.created_on }}</p>
-
-                            <!-- Comment Form -->
-                            <h3>Add a Comment</h3>
-                            <form method="post" action="">
-                                {% csrf_token %}
-                                {{ comment_form.as_p }}
-                                <button type="submit">Submit Comment</button>
-                            </form>
                         </div>
                     </div>
                 </div>
