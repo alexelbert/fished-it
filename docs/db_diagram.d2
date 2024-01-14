@@ -1,0 +1,31 @@
+catches: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  author: user model {constraint: foreign_key}
+  fish_species: str
+  fish_length: float
+  fish_weight: float
+  created_on: timestamp
+  public: int
+}
+
+comments: {
+  shape: sql_table
+  catches: catches model {constraint: foreign_key}
+  author: user model{constraint: foreign_key}
+  body: float
+  created_on: timestamp
+  approved: bool
+}
+
+users: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  name: str
+  email: str
+  created_on: timestamp
+}
+
+catches.author -> users.id
+comments.author -> users.id
+comments.catches -> catches.id
