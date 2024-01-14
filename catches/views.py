@@ -4,7 +4,8 @@ from .models import Catch
 
 class CatchesList(generic.ListView):
     queryset = Catch.objects.all()
-    template_name = "catch_list.html"
+    template_name = "catches/index.html"
+    paginate_by = 6
 
 def catch_list(request):
     # Retrieve all public catches
