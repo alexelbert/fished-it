@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from autoslug import AutoSlugField
 
 STATUS = ((0, "Private"), (1, "Public"))
 
@@ -27,6 +28,7 @@ class Catch(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     public = models.IntegerField(choices=STATUS, default=0)
+    slug = AutoSlugField(populate_from='fish_species', unique=True)
 
     class Meta:
         ordering = ["-created_on"]

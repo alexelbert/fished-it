@@ -1,125 +1,161 @@
-/* Body styles */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #d1e7b0;
-    color: #1f4020;
+    background-color: #F9FAFC;
 }
 
-/* Navigation styles */
-.navbar {
-    background-color: #44613e;
-    color: #d1e7b0;
+.brand {
+    font-family: Lato, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4A4A4F;
 }
 
-.navbar-brand {
-    color: #d1e7b0;
+.red-o {
+    color: #E84610;
 }
 
-.navbar-brand .brand {
-    color: #ffcc29;
+.thin {
+    font-weight: 300;
 }
 
-.navbar-nav .nav-link {
-    color: #d1e7b0;
+.light-bg {
+    background-color: #fff;
 }
 
-.navbar-nav .nav-link.active {
-    color: #ffcc29;
+.dark-bg {
+    background-color: #445261;
 }
 
-/* Footer styles */
-.footer {
-    background-color: #44613e;
-    color: #d1e7b0;
+.main-bg {
+    background-color: #F9FAFC;
 }
 
-/* Social media icons in the footer */
-.footer i {
-    font-size: 2em;
-    color: #ffcc29;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    .navbar-nav {
-        margin-top: 10px;
-    }
-
-    .navbar-text {
-        display: block;
-        text-align: center;
-    }
-}
-
-/* Main section styles */
-main {
-    background-color: #d1e7b0;
-}
-
-/* Introduction Section styles */
-.alert-info {
-    background-color: #ffcc29;
-    color: #1f4020;
-    border-color: #bc6c25;
-}
-
-/* Blog Entries Column styles */
 .card {
-    background-color: #ffcc29;
-    border: 1px solid #bc6c25;
+    border: none;
+    background-color: transparent;
 }
 
 .image-container {
     position: relative;
-    overflow: hidden;
 }
 
 .image-flash {
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 5%;
+    min-width: 30%;
+    left: -2px;
+    background-color: #188181;
+}
+
+.scale {
     width: 100%;
+    height: auto;
+}
+
+.author {
+    color: white;
+    margin: 4px;
+    text-transform: uppercase;
+}
+
+.masthead {
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    height: 33vh;
+    width: 100%;
+}
+
+.masthead-text {
+    background-color: #445261;
+    color: white;
+    position: relative;
+}
+
+.masthead-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.masthead-image:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 90%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #d1e7b0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 150%;
+    background: #445261;
+    -webkit-transform: skew(15deg);
+    -moz-transform: skew(15deg);
+    transform: skew(15deg);
+    z-index: 100;
 }
 
 .post-link {
-    color: #1f4020;
+    text-decoration: none;
+    color: #445261;
+}
+
+.post-link:hover,
+.page-link {
+    color: #E84610;
+}
+
+.post-title {
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+.post-subtitle {
+    margin-left: 5%;
+    color: lightgray;
+}
+
+.btn-signup,
+.btn-edit {
+    background-color: #188181;
+    color: #fff;
+}
+
+.btn-signup:hover,
+.btn-signup:active {
+    background-color: #fff;
+    color: #23BBBB;
+}
+
+.link {
+    color: #23BBBB;
     text-decoration: none;
 }
 
-/* Pagination styles */
-.pagination {
-    margin-top: 20px;
-    text-align: center;
+.link:hover,
+.link:active {
+    color: #445261;
+    text-decoration: underline;
 }
 
-.pagination li {
-    display: inline;
-    margin-right: 10px;
+.btn-like {
+    color: #E84610;
+    border: none;
+    background: transparent;
 }
 
-.pagination a {
-    color: #1f4020;
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid #bc6c25;
-    background-color: #ffcc29;
+.btn-delete {
+    color: #fff;
+    background: #E84610;
 }
 
-.pagination a:hover {
-    background-color: #bc6c25;
-    color: #d1e7b0;
+.btn-like:hover,
+.btn-like:active {
+    color: #E84610;
+    background: transparent;
+    border: none;
 }
 
-/* Adjust the number of items per page */
-@media (max-width: 768px) {
-    .pagination a {
-        padding: 5px 5px; /* Adjust the padding for smaller screens */
-    }
+.faded {
+    color: rgb(172, 175, 175);
 }
 
+.approval {
+    color: rgb(222, 146, 168);
+}
