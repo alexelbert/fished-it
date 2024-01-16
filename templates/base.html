@@ -35,36 +35,52 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
             {% if user.is_authenticated %}
-            <a class="navbar-brand brand" href="{% url 'home' %}">🎣Fished It!</a>
+            <a class="navbar-brand brand" href="{% url 'home' %}">🎣 Fished It!</a>
             {% else %}
             <a class="navbar-brand brand" href="{% url 'home' %}">🐟 Fished It!</a>
             {% endif %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'home' %}">Home</a>
+                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="#">My Catches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'add_catch' %}" class="btn btn-signup">Add Catch</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_signup' %}">Register</a>
+                        <a class="btn btn-signup" aria-current="page" href="{% url 'account_signup' %}">Register</a>
                     </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <p class="nav-link mb-0">Logged in as {{ user }}</p>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
                 </ul>
-                {% if user.is_authenticated %}
-                <a href="{% url 'add_catch' %}" class="btn btn-signup">Add Catch</a>
-                <p class="text-end m-3">Logged in as {{ user }}</p>
-                {% else %}
-                <p class="text-end m-3">You are not logged in</p>
-                {% endif %}
             </div>
         </div>
     </nav>
