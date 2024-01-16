@@ -1,10 +1,11 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib import messages
 from .models import Catch, Comment
 from django.shortcuts import render, get_object_or_404, reverse
-from .forms import CommentForm
+from django.contrib.auth.decorators import login_required
+from .forms import CommentForm, CatchForm
 
 
 class CatchesList(generic.ListView):
@@ -96,3 +97,22 @@ def comment_delete(request, slug, comment_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('catch_detail', args=[slug]))
+
+
+@login_required
+def add_catch(request):
+    if request.method == "POST":
+        form = CatchForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_catch = form.save(commit=False)
+            new_catch.author = request.user
+            new_catch.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Catch successfully added'
+            )
+            return redirect('home')  # Replace with your success URL
+    else:
+        form = CatchForm()
+
+    return render(request, "catches/add_catch.html", {"form": form})

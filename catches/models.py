@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from autoslug import AutoSlugField
 
-STATUS = ((0, "Private"), (1, "Public"))
 
 class Catch(models.Model):
+    STATUS = ((0, "Private"), (1, "Public"))
     """
     Stores a single blog catch entry related to :model:`auth.User`.
 
