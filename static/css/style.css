@@ -1,0 +1,243 @@
+:root {
+    /* Color Variables */
+    --primary-color: #386641;
+    --accent-color: #bc4749;
+    --text-color: #333;
+    --background-color: #F9FAFC;
+    --light-background-color: #fff;
+    --dark-background-color: #6a994e;
+    --light-grey: #aaa;
+    --dark-grey: #4A4A4F;
+    --link-color: #6a994e;
+    --hover-color: #a7c957;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+}
+
+.brand {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--dark-grey);
+}
+
+.brand:hover {
+    text-decoration: none;
+}
+
+.thin {
+    font-weight: 300;
+}
+
+.light-bg {
+    background-color: var(--light-background-color);
+}
+
+.dark-bg {
+    background-color: var(--dark-background-color);
+}
+
+.main-bg {
+    background-color: var(--background-color);
+}
+
+.card {
+    border: none;
+    background-color: var(--light-background-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-flash {
+    background-color: var(--primary-color);
+    padding: 5px;
+    font-size: 0.9em;
+}
+
+.scale {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.author {
+    color: white;
+    margin: 4px;
+    text-transform: uppercase;
+}
+
+.masthead {
+    height: 40vh;
+    width: 100%;
+}
+
+.masthead-text {
+    background-color: var(--dark-background-color);
+    color: white;
+    padding: 20px;
+}
+
+.masthead-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.masthead-image:after {
+    background: var(--dark-background-color);
+    -webkit-transform: skew(15deg);
+    transform: skew(15deg);
+}
+
+.post-link,
+.page-link {
+    color: var(--dark-background-color);
+    transition: color 0.3s;
+}
+
+.post-link:hover {
+    color: var(--accent-color);
+}
+
+.post-title {
+    font-size: 2em;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+.post-subtitle {
+    margin-left: 5%;
+    color: var(--light-grey);
+}
+
+.btn {
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-signup,
+.btn-edit {
+    background-color: var(--primary-color);
+    color: var(--light-background-color);
+}
+
+.btn-signup:hover {
+    background-color: var(--link-color);
+    color: var(--light-background-color);
+    text-decoration: none;
+}
+
+.link {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.link:hover {
+    color: var(--dark-background-color);
+    text-decoration: underline;
+}
+
+.btn-like,
+.btn-delete {
+    background: transparent;
+}
+
+.btn-like:hover {
+    color: var(--accent-color
+);
+}
+
+.btn-delete {
+color: var(--light-background-color);
+background: var(--accent-color);
+}
+
+.btn-delete:hover {
+background-color: var(--hover-color);
+}
+
+.faded {
+color: rgb(172, 175, 175);
+}
+
+.approval {
+color: rgb(222, 146, 168);
+}
+
+/* Additional Styles for Modern Look */
+.container {
+max-width: 1200px;
+margin: auto;
+padding: 0 20px;
+}
+
+.row {
+display: flex;
+flex-wrap: wrap;
+}
+
+.col {
+flex: 1;
+padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.col {
+flex-basis: 100%;
+}
+}
+
+/* Form Styles */
+.form-control {
+width: 100%;
+padding: 10px;
+margin: 10px 0;
+border-radius: 5px;
+border: 1px solid #ddd;
+}
+
+.form-padding {
+padding: 20px;
+}
+
+/* Typography Improvements */
+h1, h2, h3, h4, h5, h6 {
+color: var(--text-color);
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+p {
+line-height: 1.6;
+}
+
+/* Link Styling */
+a {
+color: var(--accent-color);
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
+color: var(--dark-background-color);
+}
+
+/* Footer Styles */
+.footer {
+background-color: var(--dark-background-color);
+color: white;
+padding: 20px;
+text-align: center;
+}
