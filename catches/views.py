@@ -1,7 +1,10 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import generic
-from .models import Catch
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from .models import Catch, Comment
+from django.shortcuts import render, get_object_or_404, reverse
+from .forms import CommentForm
 
 
 class CatchesList(generic.ListView):
@@ -26,9 +29,70 @@ def catch_detail(request, slug):
 
     queryset = Catch.objects.filter(public=1)
     catch = get_object_or_404(queryset, slug=slug)
+    comments = catch.comments.all().order_by("-created_on")
+    comment_count = catch.comments.filter(approved=True).count()
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.author = request.user
+            comment.post = catch
+            comment.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment submitted and awaiting approval'
+            )
+
+    comment_form = CommentForm()
 
     return render(
         request,
         "catches/catch_detail.html",
-        {"catch": catch},
+        {
+            "catch": catch,
+            "comments": comments,
+            "comment_count": comment_count,
+            "comment_form": comment_form,
+        },
+        
     )
+
+
+def comment_edit(request, slug, comment_id):
+    """
+    view to edit comments
+    """
+    if request.method == "POST":
+
+        queryset = Catch.objects.filter(public=1)
+        post = get_object_or_404(queryset, slug=slug)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+
+    return HttpResponseRedirect(reverse('catch_detail', args=[slug]))
+
+
+def comment_delete(request, slug, comment_id):
+    """
+    view to delete comment
+    """
+    queryset = Catch.objects.filter(public=1)
+    post = get_object_or_404(queryset, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.author == request.user:
+        comment.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('catch_detail', args=[slug]))
