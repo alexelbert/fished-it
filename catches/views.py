@@ -116,3 +116,24 @@ def add_catch(request):
         form = CatchForm()
 
     return render(request, "catches/add_catch.html", {"form": form})
+
+
+@login_required
+def my_catches(request):
+    my_catches = Catch.objects.filter(author=request.user)
+    return render(request, 'catches/my_catches.html', {'catches': my_catches})
+
+
+# @login_required
+# def edit_catch(request, catch_id):
+#     catch = get_object_or_404(Catch, pk=catch_id, author=request.user)
+#     if request.method == "POST":
+#         form = CatchForm(request.POST, request.FILES, instance=catch)
+#         if form.is_valid():
+#             form.save()
+#             messages.add_message(request, messages.SUCCESS, 'Catch successfully updated')
+#             return redirect('my_catches')  # Replace with your success URL
+#     else:
+#         form = CatchForm(instance=catch)
+
+#     return render(request, "catches/my_catches.html", {"form": form})

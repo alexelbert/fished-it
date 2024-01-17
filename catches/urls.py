@@ -4,6 +4,7 @@ from django.urls import path
 urlpatterns = [
      path('', views.CatchesList.as_view(), name='home'),
      path('add_catch/', views.add_catch, name='add_catch'),
+     path('my_catches/', views.my_catches, name='my_catches'),
      path('<slug:slug>/', views.catch_detail, name='catch_detail'),
      path('<slug:slug>/edit_comment/<int:comment_id>',
           views.comment_edit, name='comment_edit'),
