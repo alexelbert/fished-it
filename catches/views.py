@@ -112,7 +112,7 @@ def add_catch(request):
                 request, messages.SUCCESS,
                 'Catch successfully added'
             )
-            return redirect('home')  # Replace with your success URL
+            return redirect('home')
     else:
         form = CatchForm()
 
@@ -132,7 +132,10 @@ def edit_catch(request, slug):
         form = CatchForm(request.POST, request.FILES, instance=catch)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Catch updated successfully.')
             return redirect('my_catches')
+        else:
+            messages.error(request, "Uh oh! Catch wasn't updated :(")
     else:
         form = CatchForm(instance=catch)
     return render(request, 'catches/edit_catch.html', {'form': form, 'catch': catch})
