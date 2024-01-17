@@ -10,7 +10,7 @@ from django.http import JsonResponse
 
 
 class CatchesList(generic.ListView):
-    queryset = Catch.objects.all()
+    queryset = Catch.objects.filter(public=1)
     template_name = "catches/index.html"
     paginate_by = 6
 
@@ -112,7 +112,7 @@ def add_catch(request):
                 request, messages.SUCCESS,
                 'Catch successfully added'
             )
-            return redirect('home')  # Replace with your success URL
+            return redirect('home')
     else:
         form = CatchForm()
 
@@ -132,7 +132,23 @@ def edit_catch(request, slug):
         form = CatchForm(request.POST, request.FILES, instance=catch)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Catch updated successfully.')
             return redirect('my_catches')
+        else:
+            messages.error(request, "Uh oh! Catch wasn't updated :(")
     else:
         form = CatchForm(instance=catch)
     return render(request, 'catches/edit_catch.html', {'form': form, 'catch': catch})
+
+
+@login_required
+def delete_catch(request, slug):
+    catch = get_object_or_404(Catch, slug=slug)
+
+    if request.user == catch.author:
+        catch.delete()
+        messages.success(request, 'Catch deleted successfully.')
+    else:
+        messages.error(request, 'You can only delete your own catches.')
+
+    return redirect('my_catches')  # Redirect to the catch list or any other desired page

@@ -5,16 +5,16 @@
     <h2>My Catches</h2>
     <table class="table table-bordered">
         <thead class="thead-light">
-        <tr>
-            <th>Fish Species</th>
-            <th>Fish Length</th>
-            <th>Fish Weight</th>
-            <th>Created On</th>
-            <th>Updated On</th>
-            <th>Public</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+            <tr>
+                <th>Fish Species</th>
+                <th>Fish Length</th>
+                <th>Fish Weight</th>
+                <th>Created On</th>
+                <th>Updated On</th>
+                <th>Public</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
         {% for catch in catches %}
         <tr>
             <td class="align-middle">{{ catch.fish_species }}</td>
@@ -24,22 +24,41 @@
             <td class="align-middle">{{ catch.updated_on }}</td>
             <td class="align-middle">
                 {% if catch.public %}
-                    Yes
+                Yes
                 {% else %}
-                    No
+                No
                 {% endif %}
             </td>
             <td class="align-middle">
                 <a href="{% url 'edit_catch' catch.slug %}" class="btn btn-signup">
                     <i class="fas fa-edit"></i> Edit
                 </a>
-                <a href="#" class="btn btn-danger delete-catch">
-                  <i class="fas fa-trash-alt"></i> Delete
-                </a>
+                <button type="button" class="btn btn-danger delete-catch" data-bs-toggle="modal" data-bs-target="#deleteCatchModal_{{ catch.id }}">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </button>
             </td>
         </tr>
+
+        <!-- Delete Catch Modal for each catch -->
+        <div class="modal fade" id="deleteCatchModal_{{ catch.id }}" tabindex="-1" aria-labelledby="deleteCatchModalLabel_{{ catch.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteCatchModalLabel_{{ catch.id }}">Delete Catch</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this catch?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <a href="{% url 'delete_catch' catch.slug %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% endfor %}
     </table>
 </div>
-
 {% endblock %}
