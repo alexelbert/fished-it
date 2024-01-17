@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="container">
     <h2>My Catches</h2>
@@ -11,7 +12,6 @@
             <th>Created On</th>
             <th>Updated On</th>
             <th>Public</th>
-            <!-- other fields -->
             <th>Actions</th>
         </tr>
     </thead>
@@ -29,18 +29,17 @@
                     No
                 {% endif %}
             </td>
-            <!-- other fields -->
             <td class="align-middle">
-                <a href="#" class="btn btn-signup">
+                <a href="{% url 'edit_catch' catch.slug %}" class="btn btn-signup">
                     <i class="fas fa-edit"></i> Edit
                 </a>
-                <a href="#" class="btn btn-danger" onclick="return confirm('Are you sure?');">
-                    <i class="fas fa-trash-alt"></i> Delete
+                <a href="#" class="btn btn-danger delete-catch">
+                  <i class="fas fa-trash-alt"></i> Delete
                 </a>
             </td>
         </tr>
         {% endfor %}
-        <!-- Add more rows as needed -->
     </table>
 </div>
+
 {% endblock %}
