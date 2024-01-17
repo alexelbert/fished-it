@@ -18,11 +18,11 @@
         </thead>
         {% for catch in catches %}
         <tr>
-            <td class="align-middle thumbnail-cell">
-                {% if catch.featured_image %}
-                    <img src="{{ catch.featured_image.url }}" alt="{{ catch.title }}" class="thumbnail">
+            <td class="align-middle thumbnail-cell text-center">
+                {% if "placeholder" in catch.featured_image.url %}
+                    <p class>No image uploaded</p>
                 {% else %}
-                    <img src="{% static 'images/no_image_uploaded.png' %}" alt="No image uploaded" class="thumbnail">
+                    <img src="{{ catch.featured_image.url }}" alt="{{ catch.title }}" class="thumbnail">
                 {% endif %}
             </td>
             <td class="align-middle">{{ catch.fish_species }}</td>
