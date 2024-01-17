@@ -10,7 +10,7 @@ from django.http import JsonResponse
 
 
 class CatchesList(generic.ListView):
-    queryset = Catch.objects.all()
+    queryset = Catch.objects.filter(public=1)
     template_name = "catches/index.html"
     paginate_by = 6
 
@@ -136,3 +136,16 @@ def edit_catch(request, slug):
     else:
         form = CatchForm(instance=catch)
     return render(request, 'catches/edit_catch.html', {'form': form, 'catch': catch})
+
+
+@login_required
+def delete_catch(request, slug):
+    catch = get_object_or_404(Catch, slug=slug)
+
+    if request.user == catch.author:
+        catch.delete()
+        messages.success(request, 'Catch deleted successfully.')
+    else:
+        messages.error(request, 'You can only delete your own catches.')
+
+    return redirect('my_catches')  # Redirect to the catch list or any other desired page
