@@ -6,6 +6,7 @@ from .models import Catch, Comment
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, CatchForm
+from django.http import JsonResponse
 
 
 class CatchesList(generic.ListView):
@@ -124,16 +125,14 @@ def my_catches(request):
     return render(request, 'catches/my_catches.html', {'catches': my_catches})
 
 
-# @login_required
-# def edit_catch(request, catch_id):
-#     catch = get_object_or_404(Catch, pk=catch_id, author=request.user)
-#     if request.method == "POST":
-#         form = CatchForm(request.POST, request.FILES, instance=catch)
-#         if form.is_valid():
-#             form.save()
-#             messages.add_message(request, messages.SUCCESS, 'Catch successfully updated')
-#             return redirect('my_catches')  # Replace with your success URL
-#     else:
-#         form = CatchForm(instance=catch)
-
-#     return render(request, "catches/my_catches.html", {"form": form})
+@login_required
+def edit_catch(request, slug):
+    catch = get_object_or_404(Catch, slug=slug, author=request.user)
+    if request.method == 'POST':
+        form = CatchForm(request.POST, request.FILES, instance=catch)
+        if form.is_valid():
+            form.save()
+            return redirect('my_catches')
+    else:
+        form = CatchForm(instance=catch)
+    return render(request, 'catches/edit_catch.html', {'form': form, 'catch': catch})
