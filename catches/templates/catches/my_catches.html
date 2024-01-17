@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>My Catches</h2>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th>Fish Species</th>
+            <th>Fish Length</th>
+            <th>Fish Weight</th>
+            <th>Created On</th>
+            <th>Updated On</th>
+            <th>Public</th>
+            <!-- other fields -->
+            <th>Actions</th>
+        </tr>
+    </thead>
+        {% for catch in catches %}
+        <tr>
+            <td class="align-middle">{{ catch.fish_species }}</td>
+            <td class="align-middle">{{ catch.fish_length }}</td>
+            <td class="align-middle">{{ catch.fish_weight }}</td>
+            <td class="align-middle">{{ catch.created_on }}</td>
+            <td class="align-middle">{{ catch.updated_on }}</td>
+            <td class="align-middle">
+                {% if catch.public %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </td>
+            <!-- other fields -->
+            <td class="align-middle">
+                <a href="#" class="btn btn-signup">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <a href="#" class="btn btn-danger" onclick="return confirm('Are you sure?');">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        <!-- Add more rows as needed -->
+    </table>
+</div>
+{% endblock %}
