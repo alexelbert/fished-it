@@ -14,7 +14,13 @@
                 <p class="catch-subtitle">{{ catch.author }} | {{ catch.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{% static 'images/trout.jpg' %}" class="scale" alt="placeholder">
+              {% if "placeholder" in catch.featured_image.url %}
+              <img class="card-img-top" src="{% static 'images/default.jpg' %}"
+                alt="placeholder image">
+              {% else %}
+              <img class="card-img-top" src=" {{ catch.featured_image.url }}"
+                alt="{{ catch.title }}">
+              {% endif %}
             </div>
         </div>
     </div>
