@@ -6,5 +6,32 @@
     <p>About Me: {{ user_profile.about_me }}</p>
     <p>Location: {{ user_profile.location }}</p>
     <p>Join Date: {{ user_profile.user.date_joined }}</p>
-</div>    
+    <a href="{% url 'edit_profile' user_profile.user.username %}" class="btn btn-signup">
+        <i class="fas fa-edit"></i> Edit
+    </a>
+
+    <!-- Delete user profile button -->
+    <button type="button" class="btn btn-danger delete-catch" data-bs-toggle="modal" data-bs-target="#deleteProfileModal_{{ user_profile.user.username }}">
+        <i class="fas fa-trash-alt"></i> Delete
+    </button>
+
+    <!-- Delete Profile Modal -->
+    <div class="modal fade" id="deleteProfileModal_{{ user_profile.user.username }}" tabindex="-1" aria-labelledby="deleteProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteProfileModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your profile?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="{% url 'delete_profile' user_profile.user.username %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
