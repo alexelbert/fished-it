@@ -88,7 +88,7 @@ def comment_delete(request, slug, comment_id):
     view to delete comment
     """
     queryset = Catch.objects.filter(public=1)
-    #post = get_object_or_404(queryset, slug=slug)
+    post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
     if comment.author == request.user:
