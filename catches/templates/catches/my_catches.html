@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="container">
     <h2>My Catches</h2>
     <table class="table table-bordered">
         <thead class="thead-light">
             <tr>
+                <th>Image</th>
                 <th>Fish Species</th>
                 <th>Fish Length</th>
                 <th>Fish Weight</th>
@@ -17,6 +18,13 @@
         </thead>
         {% for catch in catches %}
         <tr>
+            <td class="align-middle thumbnail-cell text-center">
+                {% if "placeholder" in catch.featured_image.url %}
+                    <p class>No image uploaded</p>
+                {% else %}
+                    <img src="{{ catch.featured_image.url }}" alt="{{ catch.title }}" class="thumbnail">
+                {% endif %}
+            </td>
             <td class="align-middle">{{ catch.fish_species }}</td>
             <td class="align-middle">{{ catch.fish_length }}</td>
             <td class="align-middle">{{ catch.fish_weight }}</td>
