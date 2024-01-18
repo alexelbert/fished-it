@@ -1,125 +1,255 @@
-/* Body styles */
+:root {
+    /* Color Variables */
+    --primary-color: #386641;
+    --accent-color: #bc4749;
+    --text-color: #333;
+    --background-color: #F9FAFC;
+    --light-background-color: #fff;
+    --dark-background-color: #6a994e;
+    --light-grey: #aaa;
+    --dark-grey: #4A4A4F;
+    --link-color: #6a994e;
+    --hover-color: #a7c957;
+}
+
 body {
+    background-color: var(--background-color);
     font-family: 'Roboto', sans-serif;
-    background-color: #d1e7b0;
-    color: #1f4020;
+    color: var(--text-color);
 }
 
-/* Navigation styles */
-.navbar {
-    background-color: #44613e;
-    color: #d1e7b0;
+.brand {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--dark-grey);
 }
 
-.navbar-brand {
-    color: #d1e7b0;
+.brand:hover {
+    text-decoration: none;
 }
 
-.navbar-brand .brand {
-    color: #ffcc29;
+.thin {
+    font-weight: 300;
 }
 
-.navbar-nav .nav-link {
-    color: #d1e7b0;
+.light-bg {
+    background-color: var(--light-background-color);
 }
 
-.navbar-nav .nav-link.active {
-    color: #ffcc29;
+.dark-bg {
+    background-color: var(--dark-background-color);
 }
 
-/* Footer styles */
-.footer {
-    background-color: #44613e;
-    color: #d1e7b0;
+.main-bg {
+    background-color: var(--background-color);
 }
 
-/* Social media icons in the footer */
-.footer i {
-    font-size: 2em;
-    color: #ffcc29;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    .navbar-nav {
-        margin-top: 10px;
-    }
-
-    .navbar-text {
-        display: block;
-        text-align: center;
-    }
-}
-
-/* Main section styles */
-main {
-    background-color: #d1e7b0;
-}
-
-/* Introduction Section styles */
-.alert-info {
-    background-color: #ffcc29;
-    color: #1f4020;
-    border-color: #bc6c25;
-}
-
-/* Blog Entries Column styles */
 .card {
-    background-color: #ffcc29;
-    border: 1px solid #bc6c25;
+    border: none;
+    background-color: var(--light-background-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .image-container {
     position: relative;
-    overflow: hidden;
 }
 
 .image-flash {
-    position: absolute;
-    top: 0;
-    left: 0;
+    background-color: var(--primary-color);
+    padding: 5px;
+    font-size: 0.9em;
+}
+
+/* Added css for making images thumbnail size */
+
+.thumbnail-cell {
+    width: 100px;
+}
+
+.thumbnail {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #d1e7b0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
 }
 
-.post-link {
-    color: #1f4020;
+.scale {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.author {
+    color: white;
+    margin: 4px;
+    text-transform: uppercase;
+}
+
+.masthead {
+    height: 40vh;
+    width: 100%;
+}
+
+.masthead-text {
+    background-color: var(--dark-background-color);
+    color: white;
+    padding: 20px;
+}
+
+.masthead-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.masthead-image:after {
+    background: var(--dark-background-color);
+    -webkit-transform: skew(15deg);
+    transform: skew(15deg);
+}
+
+.post-link,
+.page-link {
+    color: var(--dark-background-color);
+    transition: color 0.3s;
+}
+
+.post-link:hover {
+    color: var(--accent-color);
+}
+
+.post-title {
+    font-size: 2em;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+.post-subtitle {
+    margin-left: 5%;
+    color: var(--light-grey);
+}
+
+.btn {
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-signup,
+.btn-edit {
+    background-color: var(--primary-color);
+    color: var(--light-background-color);
+}
+
+.btn-signup:hover {
+    background-color: var(--link-color);
+    color: var(--light-background-color);
     text-decoration: none;
 }
 
-/* Pagination styles */
-.pagination {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.pagination li {
-    display: inline;
-    margin-right: 10px;
-}
-
-.pagination a {
-    color: #1f4020;
+.link {
+    color: var(--link-color);
     text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid #bc6c25;
-    background-color: #ffcc29;
 }
 
-.pagination a:hover {
-    background-color: #bc6c25;
-    color: #d1e7b0;
+.link:hover {
+    color: var(--dark-background-color);
+    text-decoration: underline;
 }
 
-/* Adjust the number of items per page */
+.btn-like,
+.btn-delete {
+    background: transparent;
+}
+
+.btn-like:hover {
+    color: var(--accent-color
+);
+}
+
+.btn-delete {
+color: var(--light-background-color);
+background: var(--accent-color);
+}
+
+.btn-delete:hover {
+background-color: var(--hover-color);
+}
+
+.faded {
+color: rgb(172, 175, 175);
+}
+
+.approval {
+color: rgb(222, 146, 168);
+}
+
+/* Additional Styles for Modern Look */
+.container {
+max-width: 1200px;
+margin: auto;
+padding: 0 20px;
+}
+
+.row {
+display: flex;
+flex-wrap: wrap;
+}
+
+.col {
+flex: 1;
+padding: 10px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .pagination a {
-        padding: 5px 5px; /* Adjust the padding for smaller screens */
-    }
+.col {
+flex-basis: 100%;
+}
 }
 
+/* Form Styles */
+.form-control {
+width: 100%;
+padding: 10px;
+margin: 10px 0;
+border-radius: 5px;
+border: 1px solid #ddd;
+}
+
+.form-padding {
+padding: 20px;
+}
+
+/* Typography Improvements */
+h1, h2, h3, h4, h5, h6 {
+color: var(--text-color);
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+p {
+line-height: 1.6;
+}
+
+/* Link Styling */
+a {
+color: var(--accent-color);
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
+color: var(--dark-background-color);
+}
+
+/* Footer Styles */
+.footer {
+background-color: var(--dark-background-color);
+color: white;
+padding: 20px;
+text-align: center;
+}
