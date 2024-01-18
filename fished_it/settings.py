@@ -44,13 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'django.contrib.messages',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
     'crispy_bootstrap5',
+    'cloudinary',
     'catches',
+    'my_profile',
 ]
 
 # We need to add a SITE_ID of 1 so that Django can handle multiple sites from one database. 
