@@ -22,7 +22,7 @@ def edit_profile(request, username):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully.')
-            return redirect('my_profile:profile', username=username)
+            return redirect('profile', username=username)
         else:
             messages.error(request, "Uh oh! Profile wasn't updated :(")
     else:
@@ -39,4 +39,4 @@ def delete_profile(request, username):
     if request.user == user_to_delete:
         user_to_delete.delete()
         messages.success(request, 'Profile deleted successfully.')
-        return redirect('home')  # Redirect to home after deletion
+        return redirect('home') 
