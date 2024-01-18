@@ -51,8 +51,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'crispy_bootstrap5',
-    'catches',
     'cloudinary',
+    'catches',
+    'my_profile',
 ]
 
 # We need to add a SITE_ID of 1 so that Django can handle multiple sites from one database. 
