@@ -45,7 +45,7 @@ body {
     background-color: var(--background-color);
 }
 
-.card {
+.card-body {
     border: none;
     background-color: var(--light-background-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
