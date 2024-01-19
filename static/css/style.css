@@ -88,19 +88,22 @@ body {
 }
 
 .masthead {
-    height: 40vh;
+    min-height: 40vh;
     width: 100%;
+    position: relative;
 }
 
 .masthead-text {
     background-color: var(--dark-background-color);
     color: white;
     padding: 20px;
+    flex: 1;
 }
 
 .masthead-image {
     position: relative;
     overflow: hidden;
+    flex: 1;
 }
 
 .masthead-image:after {
@@ -204,11 +207,33 @@ flex: 1;
 padding: 10px;
 }
 
+
 /* Responsive Design */
-@media (max-width: 768px) {
-.col {
-flex-basis: 100%;
+@media (min-width: 768px) {
+    .masthead {
+        min-height: auto;  /* Allow the container to adjust its height */
+        flex-direction: column;  /* Stack children vertically */
+    }
+
+    .masthead-text,
+    .masthead-image {
+        width: 100%;
+    }
+
+    .masthead-text {
+        padding: 10px;  /* Adjust padding for smaller screens */
+    }
+
+    .masthead-image:after {
+        display: none;  /* Hide skew effect on smaller screens */
+    }
 }
+
+@media (max-width: 768px) {
+    .stack {
+        flex-direction: column;
+    }
+
 }
 
 /* Form Styles */
