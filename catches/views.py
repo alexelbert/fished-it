@@ -56,7 +56,7 @@ def catch_detail(request, slug):
             "comment_count": comment_count,
             "comment_form": comment_form,
         },
-        
+
     )
 
 
@@ -78,7 +78,11 @@ def comment_edit(request, slug, comment_id):
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Error updating comment!'
+            )
 
     return HttpResponseRedirect(reverse('catch_detail', args=[slug]))
 
@@ -95,7 +99,9 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(
+            request,
+            messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('catch_detail', args=[slug]))
 
@@ -138,7 +144,9 @@ def edit_catch(request, slug):
             messages.error(request, "Uh oh! Catch wasn't updated :(")
     else:
         form = CatchForm(instance=catch)
-    return render(request, 'catches/edit_catch.html', {'form': form, 'catch': catch})
+    return render(
+        request,
+        'catches/edit_catch.html', {'form': form, 'catch': catch})
 
 
 @login_required
@@ -151,4 +159,4 @@ def delete_catch(request, slug):
     else:
         messages.error(request, 'You can only delete your own catches.')
 
-    return redirect('my_catches')  # Redirect to the catch list or any other desired page
+    return redirect('my_catches')

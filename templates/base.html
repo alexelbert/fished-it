@@ -1,5 +1,4 @@
 {% load static %}
-
 {% url 'home' as home_url %}
 {% url 'profile-urls' as my_profile_url %}
 {% url 'account_login' as login_url %}
@@ -11,13 +10,14 @@
 
 <head>
     <title>Fished It!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -112,8 +112,12 @@
     <footer class="footer mt-auto py-3 dark-bg">
         <p class="m-0 text-center text-white">Made by Alexander Elbert</p>
         <p class="m-0 text-center text-white">
-            <i class="fab fa-github ms-3"></i>
-            <i class="fab fa-linkedin ms-3"></i>
+            <a href="https://github.com/alexelbert" target="_blank" class="social-icon">
+                <i class="fab fa-github ms-3"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/alexander-elbert/" target="_blank" class="social-icon">
+                <i class="fab fa-linkedin ms-3"></i>
+            </a>
         </p>
     </footer>
 
