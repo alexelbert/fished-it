@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col text-center mt-3">
+                <h1 class="navbar-brand brand">500 Internal Server Error</h1>
+                <p>Oops! Something went wrong on our end. We're working to fix it.</p>
+                <hr class="">
+                <a class="btn btn-secondary" href="{% url 'home' %}">&laquo; Take me back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
