@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 
-
 @login_required
 def profile(request, username):
     """
@@ -20,7 +19,11 @@ def profile(request, username):
         A rendered HTML page displaying the user profile.
     """
     user_profile = get_object_or_404(UserProfile, user__username=username)
-    return render(request, 'my_profile/profile.html', {'user_profile': user_profile})
+    return render(
+        request,
+        'my_profile/profile.html',
+        {'user_profile': user_profile}
+    )
 
 
 @login_required
@@ -38,7 +41,9 @@ def edit_profile(request, username):
     user_profile = UserProfile.objects.get(user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        form = UserProfileForm(
+            request.POST, request.FILES, instance=user_profile
+        )
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully.')
@@ -48,7 +53,11 @@ def edit_profile(request, username):
     else:
         form = UserProfileForm(instance=user_profile)
 
-    return render(request, 'my_profile/edit_profile.html', {'form': form, 'user_profile': user_profile})
+    return render(
+        request,
+        'my_profile/edit_profile.html',
+        {'form': form, 'user_profile': user_profile}
+    )
 
 
 @login_required
@@ -61,7 +70,8 @@ def delete_profile(request, username):
         username: The username of the user whose profile is to be deleted.
 
     Returns:
-        Redirects to the home page after deleting the profile and displays a success message.
+        Redirects to the home page after deleting the profile
+        and displays a success message.
     """
     user_to_delete = get_object_or_404(User, username=username)
 
@@ -69,4 +79,4 @@ def delete_profile(request, username):
     if request.user == user_to_delete:
         user_to_delete.delete()
         messages.success(request, 'Profile deleted successfully.')
-        return redirect('home') 
+        return redirect('home')

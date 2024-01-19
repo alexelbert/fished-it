@@ -1,6 +1,7 @@
 from django import forms
 from .models import UserProfile
 
+
 class UserProfileForm(forms.ModelForm):
     """
     Form for editing user profile information.
@@ -12,5 +13,8 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             'about_me': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
-            'profile_picture': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'profile_picture': forms.ClearableFileInput(
+                attrs={'class': 'form-control'}
+            ),
+
         }
