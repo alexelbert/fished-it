@@ -106,18 +106,11 @@ body {
 
 .masthead-image:after {
     background: var(--dark-background-color);
-    -webkit-transform: skew(15deg);
-    transform: skew(15deg);
 }
 
-.post-link,
 .page-link {
     color: var(--dark-background-color);
     transition: color 0.3s;
-}
-
-.post-link:hover {
-    color: var(--accent-color);
 }
 
 .catch-title {
