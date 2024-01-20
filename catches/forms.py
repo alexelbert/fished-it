@@ -1,5 +1,5 @@
-from .models import Comment, Catch
 from django import forms
+from .models import Comment, Catch
 
 
 class CommentForm(forms.ModelForm):
