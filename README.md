@@ -134,7 +134,51 @@ The website includes interactive elements like forms for posting catches, commen
 ## **Testing** 
 
 Extensive testing was done during development by checking all functionality in the website. 
-HTML, CSS and JavaScript were all validated with (list of tools <TODO>).
+HTML, CSS, JavaScript and Python were all validated tools listed in segment above.
+
+Had errors with some indentation in HTML code that came up during development such as this
+![HTML indetation errors](/docs/images/htmlerror.png)
+
+Fixed issues by going over and making sure you are locate the correct html file and fix indentation. All HTML code now valid across the website.
+![HTML validation](/docs/images/valid_html_fished_it.png)
+
+CSS valid, did not really have any issues with validation of that during development.
+![CSS validation](/docs/images/valid_css_fished_it.png)
+
+Python code was validated and passed by PEP8 linter [CI Python Linter](https://pep8ci.herokuapp.com)
+
+Had a lot of bug fixes with Python code during development. private catches still show on front page but get 404 when clicked and redirected.
+```python
+class CatchesList(generic.ListView):
+    queryset = Catch.objects.all()
+    template_name = "catches/index.html"
+    paginate_by = 6
+``` 
+It was a quick fix, just had to filer for public catches only.
+```python
+class CatchesList(generic.ListView):
+    queryset = Catch.objects.filter(public=1)
+    template_name = "catches/index.html"
+    paginate_by = 6
+```
+
+Also had a lot of bug fixes with URL paths over the course of the development.
+![urls problems](/docs/images/urls_problems.png)
+This was an easy fix where you just have to remember that the order of the paths matter, before fixing page just was standing still loading.
+
+## Known bugs
+
+There are still some remaining bugs:
+
+After success messages are shown, when closed other content remain slightly pushed down on the page until the page is reloaded.
+![Message bug](/docs/images/success_message_bug.png)
+
+Poor visuals for mobile view navbar, where the burger icon menu is not looking visually pleasing but is fully functional.
+![Poor visuals navbar mobile view](/docs/images/bug_navbar_mobile.png)
+
+Forgot password is not working, and will trigger a 500 error.
+![Forgot password](/docs/images/forgot_password.png)
+
 
 
 ## Deployment
@@ -144,24 +188,37 @@ This project was deployed using Heroku as a deployment platform and ElephantSQL 
 Steps for deployment:
 
 ### ElephantSQL
-1. Create a database with postgres version 12 or higher to work with the django use din this project
-2. Use database url to connect the application to the database instance
+1. Signed up at [ElephantSQL](https://www.elephantsql.com)
+2. Create new instance and select a name and the free tiny turtle plan then press "select region"
+3. Choose the Data center closest to you then click review
+4. In the menu select stats and make sure PostgreSQL version is 12 or higher, if not just try another Data center
+5. In details page copy the URL and paste in your env.py file `os.environ.setdefault(
+    "DATABASE_URL", "<copied URL here>")`
+6. In your settings.py file set up access from you env.py file `DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}`
 
 ### Cloudinary
-1. Create an account
+1. Install the packages required to connect to the Cloudinary API `pip3 install cloudinary dj3-cloudinary-storage urllib3`
+2. Add the packages to your requirements.txt file `pip3 freeze --local > requirements.txt`
+3. Create an account at [cloudinary](https://cloudinary.com/users/register_free)
+5. In the Cloudinary dashboard copy the URL
+6. Open your env.py file and set the value of `CLOUDINARY_URL` to the URL you copied from the Cloudinary dashboard `os.environ.setdefault(
+    "CLOUDINARY_URL", "<URL copied from Cloudinary in last step>")`
+7. Delete the first part of the copied URL `CLOUDINARY_URL=`
+8. Open your settings.py file and add `'cloudinary_storage',` and `'cloudinary',` to your `INSTALLED_APPS` making sure the `'cloudinary_storage',` is added right after `django.contrib.staticfiles`
 ...
-<TODO>
 
 ### Heroku
 
-1. Fork or clone this repository
-2. Create a new Heroku app
-3. Name your App and choose region then click "create app"
-4. Go to settings then config vars <TODO>
-6. Go to the Deploy tab, select GitHub and confirm by clicking Connect to GitHub.
-7. Search for your repository name, when you have found it press connect to link your Heroku app to your repository.
-8. Your can choose automatic deployment that rebuilds the app every time you push new code to your repository, or manually deploy which ever you prefer.
-9. After it has finished building your project click view to see your project.
+1. Create a new Heroku app
+2. Name your App and choose region then click "create app"
+3. Go to settings then reveal config vars
+4. Make sure to set your keys and values from your env.py file, KEY:`CLOUDINARY_URL` VALUE: `<Your URL>` for example.
+5. Go to the Deploy tab, select GitHub and confirm by clicking Connect to GitHub.
+6. Search for your repository name, when you have found it press connect to link your Heroku app to your repository.
+7. Your can choose automatic deployment that rebuilds the app every time you push new code to your repository, or manually deploy which ever you prefer.
+8. After it has finished building your project click view to see your project.
 
 
 *Forking the GitHub Repository*
@@ -182,7 +239,7 @@ Cloning your repository allows you to download a local version of the repository
 4. Copy the HTTPS link provided
 5. Type "git clone" and paste your link
 6. Press enter and you will now have a local clone of your repository
-7. To view the application locally, fill in the required variables in the `env_sample.py` file and rename it to `env.py` (make sure to never share files with sensitive data, such as this one) <REVIEW>
+7. To view the application locally, fill in the required variables in the `env_sample.py` file and rename it to `env.py` and add it to your gitignore file (make sure to never share files with sensitive data, such as this one)
 
 ---
 
@@ -191,17 +248,14 @@ Cloning your repository allows you to download a local version of the repository
 Producing this website i have used several resources for inspiration and researched for help.
 
 The following websites was used for inspiration and research:
-- ...
-<TODO>
+ - Blog project by Code Institute
+ ...
+
 
 Used code from these resources, credited as comments code:
 
-- Blog project <TODO>
+- Blog project 
 
-
-Other websites i used for the content:
-
-- Credited in the HTML and CSS code is from the blog project which I used as inspiration and as a base for my application.
 
 ## Acknowledgements
 
