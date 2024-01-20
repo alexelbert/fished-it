@@ -26,31 +26,28 @@
             <div class="row">
                 {% for catch in catch_list %}
                 <div class="col-md-4">
-                    <a href="{% url 'catch_detail' catch.slug %}" class="card-link">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="image-container">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+                                <a href="{% url 'catch_detail' catch.slug %}" class="card-link">
                                     {% if "placeholder" in catch.featured_image.url %}
-                                    <img class="card-img-top" src="{% static 'images/default.jpg' %}"
-                                      alt="placeholder image">
+                                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                                     {% else %}
-                                    <img class="card-img-top" src="{{ catch.featured_image.url }}"
-                                      alt="{{ catch.title }}">
+                                    <img class="card-img-top" src="{{ catch.featured_image.url }}" alt="{{ catch.title }}">
                                     {% endif %}
                                     <div class="image-flash">
                                         <p class="author">Caught by {{ catch.author }}</p>
                                     </div>
-                                </div>
-                                <a href="{% url 'catch_detail' catch.slug %}" class="catch-link">
-                                    <h2 class="card-title">{{ catch.fish_species }}</h2>
                                 </a>
-                                <!-- <p class="card-text text-muted">Length: {{ catch.fish_length }} | Weight: {{ catch.fish_weight }}</p> -->
-                                <p class="card-text text-muted h6">Created on: {{ catch.created_on }}</p>
                             </div>
+                            <a href="{% url 'catch_detail' catch.slug %}" class="catch-link">
+                                <h2 class="card-title">{{ catch.fish_species }}</h2>
+                            </a>
+                            <p class="card-text text-muted h6">Created on: {{ catch.created_on }}</p>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
             </div>
             <div class="row">
                 {% endif %}
