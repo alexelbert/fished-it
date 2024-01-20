@@ -2,11 +2,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib import messages
-from .models import Catch, Comment
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.decorators import login_required
-from .forms import CommentForm, CatchForm
 from django.http import JsonResponse
+from .forms import CommentForm, CatchForm
+from .models import Catch, Comment
 
 
 class CatchesList(generic.ListView):
